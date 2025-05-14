@@ -46,8 +46,8 @@ const YouTubeCarousel: React.FC<{ videos: YouTubeVideoProps[] }> = ({ videos }) 
 
   return (
     <div className="relative">
-      {/* Main video display - with landscape optimization */}
-      <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg landscape:h-[70vh] landscape:max-h-[500px]">
+      {/* Main video display - with landscape optimization and centered */}
+      <div className="relative mx-auto max-w-4xl aspect-video rounded-2xl overflow-hidden shadow-lg landscape:h-[70vh] landscape:max-h-[500px]">
         <iframe
           className="w-full h-full"
           src={`https://www.youtube.com/embed/${videos[currentIndex].videoId}`}
@@ -77,12 +77,12 @@ const YouTubeCarousel: React.FC<{ videos: YouTubeVideoProps[] }> = ({ videos }) 
 
       {/* Video thumbnails for larger screens - using custom breakpoints */}
       <div className="hidden md:block mt-4">
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-4 max-w-4xl mx-auto">
           {videos.map((video, index) => (
             <div
               key={video.videoId}
               className={`cursor-pointer rounded-lg overflow-hidden transition-all ${
-                index === currentIndex ? 'ring-2 ring-ycf-highlight scale-105' : 'opacity-70 hover:opacity-100'
+                index === currentIndex ? 'ring-2 ring-ycf-highlight scale-105' : 'opacity-50 hover:opacity-100'
               }`}
               onClick={() => setCurrentIndex(index)}
             >
@@ -260,7 +260,7 @@ export const WatchListen = () => {
               className="font-poppins"
               endContent={<Icon icon="lucide:youtube" />}
               as="a"
-              href="https://youtube.com/@youngchristainfellowship?si=oRLZye7bDsHfnt5w"
+              href="https://youtu.be/Epzdn3L5sWA?si=WaRBLCJTVXiPZ9zN"
               target="_blank"
               rel="noopener noreferrer"
             >

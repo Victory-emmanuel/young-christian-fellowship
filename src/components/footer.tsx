@@ -2,16 +2,23 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link, Button } from "@heroui/react";
 import { Icon } from "@iconify/react";
+import { FaTiktok } from "react-icons/fa";
 
 export const Footer = () => {
+  const quickLinks = [
+    { label: "Home", href: "#" },
+    { label: "Watch & Listen", href: "#watch" },
+    { label: "Join Us", href: "#join" },
+    { label: "Partner", href: "#partner" },
+    { label: "Contact", href: "#contact" },
+  ];
+
   const footerLinks = [
     {
       title: "About",
       links: [
         { label: "Our Mission", href: "#about" },
-        { label: "Leadership Team", href: "#" },
-        { label: "Statement of Faith", href: "#" },
-        { label: "History", href: "#" },
+        
       ],
     },
     {
@@ -19,25 +26,16 @@ export const Footer = () => {
       links: [
         { label: "Devotionals", href: "#devotionals" },
         { label: "Sermons", href: "#watch" },
-        { label: "Bible Study Materials", href: "#" },
-        { label: "Prayer Requests", href: "#" },
+       
       ],
     },
-    {
-      title: "Get Involved",
-      links: [
-        { label: "Join", href: "#join" },
-        { label: "Volunteer", href: "#" },
-        { label: "Partner", href: "#partner" },
-        { label: "Events Calendar", href: "#" },
-      ],
-    },
+   
   ];
 
   const socialLinks = [
-    { icon: "lucide:instagram", label: "Instagram", url: "#" },
-    { icon: "lucide:youtube", label: "YouTube", url: "https://youtube.com/@youngchristainfellowship?si=oRLZye7bDsHfnt5w" },
-    { icon: "lucide:brand-tiktok", label: "TikTok", url: "#" },
+    { icon: "lucide:instagram", label: "Instagram", url: "#", reactIcon: null },
+    { icon: "lucide:youtube", label: "YouTube", url: "https://youtube.com/@youngchristainfellowship?si=oRLZye7bDsHfnt5w", reactIcon: null },
+    { icon: null, label: "TikTok", url: "#", reactIcon: FaTiktok },
   ];
 
   const containerVariants = {
@@ -97,11 +95,32 @@ export const Footer = () => {
                     as="a"
                     href={social.url}
                   >
-                    <Icon icon={social.icon} className="text-xl" />
+                    {social.icon ? (
+                      <Icon icon={social.icon} className="text-xl" />
+                    ) : social.reactIcon ? (
+                      <social.reactIcon className="text-xl" />
+                    ) : null}
                   </Button>
                 </motion.div>
               ))}
             </div>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="space-y-4">
+            <h4 className="font-poppins font-semibold text-lg">Quick Links</h4>
+            <ul className="space-y-2">
+              {quickLinks.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    href={link.href}
+                    className="text-white/70 hover:text-ycf-accent transition-colors flex items-center gap-1"
+                  >
+                    <Icon icon="lucide:chevron-right" className="text-xs" />
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </motion.div>
 
           {footerLinks.map((column, columnIndex) => (
@@ -134,12 +153,19 @@ export const Footer = () => {
           <div className="text-white/60 text-sm">
             &copy; Young Christian Fellowship, 2025. All rights reserved.
           </div>
-          <div className="flex gap-6 text-sm">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 text-sm items-center">
             <Link href="#" className="text-white/60 hover:text-white">
               Privacy Policy
             </Link>
-            <div className="text-white/60">
-              Follow us on instagram, youtube, tiktok
+            <Link href="#" className="text-white/60 hover:text-white">
+              Terms of Service
+            </Link>
+            <Link href="#contact" className="text-white/60 hover:text-white">
+              Contact Us
+            </Link>
+            <div className="text-white/60 flex items-center gap-1">
+              <Icon icon="lucide:map-pin" className="text-xs" />
+              <span>Lagos, Nigeria</span>
             </div>
           </div>
         </motion.div>

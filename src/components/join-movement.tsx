@@ -77,7 +77,7 @@ export const JoinMovement = () => {
 
   return (
     <section id="join" className="section-padding bg-ycf-accent/10" ref={ref}>
-      <div className="container-padding max-w-3xl mx-auto">
+      <div className="container-padding max-w-4xl mx-auto">
         <SectionHeader
           title="Join the Movement"
           subtitle="Be part of a community that's making a difference. Fill out the form below to join the YCF community."
